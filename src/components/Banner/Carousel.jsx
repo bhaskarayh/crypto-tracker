@@ -23,8 +23,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+export function numberWithCommas(x, currency = "USD") {
+  switch (currency) {
+    case "USD":
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // break;
+    case "IDR":
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    default:
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 }
 const Carousel = () => {
   const [trending, setTrending] = useState([]);
@@ -69,8 +77,10 @@ const Carousel = () => {
           </span>
         </span>
 
-        <span style={{ fontSize: 22, fontWeight: 500 }}>
-          {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
+        <span
+          style={{ fontSize: 22, fontWeight: 500, textTransform: "capitalize" }}
+        >
+          {symbol} {numberWithCommas(coin?.current_price.toFixed(2), currency)}
         </span>
       </Link>
     );

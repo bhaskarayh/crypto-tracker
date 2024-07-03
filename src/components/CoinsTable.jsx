@@ -42,10 +42,6 @@ const CoinsTable = () => {
 
   //   console.log(coins);
 
-  useEffect(() => {
-    fetchCoins();
-  }, [currency]);
-
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -54,6 +50,10 @@ const CoinsTable = () => {
       type: "dark",
     },
   });
+
+  useEffect(() => {
+    fetchCoins();
+  }, [currency]);
 
   const handleSearch = () => {
     return coins.filter(
@@ -163,7 +163,10 @@ const CoinsTable = () => {
 
                         <TableCell align="right">
                           {symbol}{" "}
-                          {numberWithCommas(row.current_price.toFixed(2))}
+                          {numberWithCommas(
+                            row.current_price.toFixed(2),
+                            currency
+                          )}
                         </TableCell>
 
                         <TableCell
@@ -177,10 +180,10 @@ const CoinsTable = () => {
                         </TableCell>
 
                         <TableCell align="right">
-                          {symbol}
-                          {""}
+                          {symbol}{" "}
                           {numberWithCommas(
-                            row.market_cap.toString().slice(0, -6)
+                            row.market_cap.toString().slice(0, -6),
+                            currency
                           )}
                           M
                         </TableCell>

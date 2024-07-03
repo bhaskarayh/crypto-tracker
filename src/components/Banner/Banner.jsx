@@ -47,8 +47,7 @@ const Banner = () => {
               fontFamily: "Montserrat",
             }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
-            voluptatem.
+            Get all the Info regarding your favorite Crypto Currency
           </Typography>
         </div>
         <Carousel />
